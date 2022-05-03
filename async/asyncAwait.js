@@ -1,4 +1,4 @@
-function hola(nombre){
+async function hola(nombre){
     return new Promise((resolve, reject)=>{
         setTimeout(() =>{
             console.log('Hola '+nombre);
@@ -8,7 +8,7 @@ function hola(nombre){
     });
 }
 
-function hablar(nombre){
+async function hablar(nombre){
     return new Promise( (resolve, reject)=>{
         setTimeout(() =>{
             console.log('Bla bla bla bla');
@@ -17,7 +17,7 @@ function hablar(nombre){
     });
 }
 
-function adios(nombre){
+async function adios(nombre){
     return new Promise( (resolve,reject)=>{
         setTimeout(() =>{
             console.log('Adios '+nombre);
@@ -26,17 +26,17 @@ function adios(nombre){
     });
 }
 
+async function main(){
+    let nombre = await hola('Andrés');
+    await hablar();
+    await hablar();
+    await hablar();
+    await adios(nombre);
+    console.log('Termina el proceso');
+};
 
-// ...
+console.log('Empezamos el proceso');
+main();
+console.log('Va a ser la segunda instrucción');
 
-console.log('Iniciando el proceso');
-hola('Andrés')
-    .then(hablar)
-    .then(adios)
-    .then(()=>{
-        console.log('Terminado el proceso');
-    })
-    .catch(error=>{
-        console.error('Ha habido un error');
-        console.error(error);
-    })
+
